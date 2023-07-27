@@ -1,4 +1,8 @@
-<h1 align='center'>[ESX] Proploot</a></h1><p align='center'>
+--------------------------------------------------
+
+<h1 align='center'>[ESX] Proploot made by Cynio</a></h1><p align='center'>
+
+--------------------------------------------------
 
 Really simple resource created to loot props and receive items/weapons/money in GTA V FiveM, ESX framework
 
