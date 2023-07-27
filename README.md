@@ -1,7 +1,7 @@
 <h1 align='center'>[ESX] Proploot</a></h1><p align='center'>
 
 Really simple resource created to loot props and receive items/weapons/money in GTA V FiveM, ESX framework
-
+High cpu usage 25ms while idle due to a lot of props added, that can be changed in config script.
 ## Dependencies
 ESX Legacy
 
