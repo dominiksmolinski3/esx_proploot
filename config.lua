@@ -6,6 +6,7 @@ Config.ObjectEnabled = true -- false if you want it off or your server is severe
 
 -- props added here can be looted all around the map, use https://gtahash.ru/ to search for those (you can also delete these
 -- I've added most of the good looting props, boxes/bins/chests/shelves and some kitchen appliances. Feel free to add more
+-- high cpu usage on server due to a lot of props, you need to watch out with it
 Config.Objects = { 
 	"prop_bin_01a",
 	"prop_bin_02a",
