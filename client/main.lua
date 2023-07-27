@@ -34,7 +34,7 @@ if Config.ObjectEnabled then
 		                    SetCurrentPedWeapon(GetPlayerPed(-1), 0xA2719263, true)
 		                    RequestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@")
 							while not HasAnimDictLoaded("anim@amb@clubhouse@tutorial@bkr_tut_ig3@") do
-								Citizen.Wait(5)
+								Citizen.Wait(1000)
 							end
 							TaskPlayAnim(PlayerPedId(), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 2.0, 2.0, 5000, 30, 0, 0, 0, 0)
 							Citizen.Wait(5000)
