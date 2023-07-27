@@ -4,7 +4,7 @@
 
 --------------------------------------------------
 
-Really simple resource created to loot props and receive items/weapons/money in GTA V FiveM, ESX framework
+simple resource created to loot props and receive items/weapons/money in GTA V FiveM, ESX framework
 
 beware of high cpu usage 13ms while idle due to a lot of props added, that can be changed in config script.
 ## Dependencies
@@ -35,7 +35,7 @@ Open for pull requests.
 ## Working on
 Adding progressbar while looting
 
-optimalization (a lot of props = a lot of cpu usage)
+optimalization (a lot of props = a lot of cpu usage, would like some help)
 
 ## Legal
 
