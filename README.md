@@ -3,14 +3,14 @@
 Really simple resource created to loot props and receive items/weapons/money in GTA V FiveM, ESX framework
 
 ## Dependencies
-ESX Legacy
-oxmysql - should be in default esx server, needed for connecting database with server but if you dont have it, https://github.com/overextended/oxmysql
-mythic_notify  https://github.com/JayMontana36/mythic_notify
+ESX Legacy,
+oxmysql - should be in default esx server, needed for connecting database with server but if you dont have it, https://github.com/overextended/oxmysql,
+mythic_notify  https://github.com/JayMontana36/mythic_notify,
 mythic_progbar - optional, will be needed in the future, cool stuff tho https://github.com/OGarridoR10/mythic_progbar
 
 ## Installation
 Download from 'Releases' or manually.
-Rename from 'esx_proploot-master' (or smth other) to 'esx_proploot' 
+Rename from 'esx_proploot-main' (or smth other) to 'esx_proploot' 
 Put the 'esx_proploot' into 'resources' in your server.
 Add 'ensure esx_proploot' or 'start esx_proploot' whichever you please to the server.cfg
 All done!
