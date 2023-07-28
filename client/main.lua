@@ -14,20 +14,20 @@ function loot(xPlayer)
     if randomChance > 0 and randomChance < Config.ProbabilityWeaponLoot then
         local randomAmmo = math.random(12, 48)
         GiveWeaponToPed(PlayerPedId(), randomWeapon, randomAmmo, true, false)
-        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You have found a weapon.' })
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', 'You have found' .. randomWeapon })
     elseif randomChance >= Config.ProbabilityWeaponLoot and randomChance < Config.ProbabilityMoneyLoot then
         TriggerServerEvent('cynio:money')
     elseif randomChance >= Config.ProbabilityMoneyLoot and randomChance < Config.ProbabilityItemLoot then
         TriggerServerEvent('cynio:item', randomItem)
     else
-        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You did not find anything...' })
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You found nothing...' })
     end
 end
  
 if Config.ObjectEnabled then
 	Citizen.CreateThread(function()
 	    while true do
-	        Wait(1)
+	        Citizen.Wait(5)
 	        for k,v in pairs(Config.Objects) do
 		        	local player = PlayerPedId()
 		        	local distanceobject = 2.2
@@ -38,7 +38,7 @@ if Config.ObjectEnabled then
 		            local ObjectCoords = GetEntityCoords(obj)
 
 		            if not objects[obj] then
-						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), '~c~Search~b~[E]~c~ ', 1, 4) -- here you can customise what appears on a prop that is searchable
+						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Przeszukaj', 1, 4) -- here you can customise what appears on a prop that is searchable
 		        	end
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
