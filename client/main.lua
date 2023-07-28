@@ -1,33 +1,33 @@
-
-
+local PlayerData = nil
+local objects = {}
+ 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
-	PlayerData = xPlayer
+    PlayerData = xPlayer
 end)
-objects = {}
-function loot()
-randomChance = math.random(1, 100)
-randomWeapon = Config.WeaponLoot[math.random(1, #Config.WeaponLoot)]
-randomItem = Config.ItemLoot[math.random(1, #Config.ItemLoot)]
-
-if randomChance > 0 and randomChance < Config.ProbabilityWeaponLoot then
-	local randomAmmo = math.random(12, 48) -- here you can choose between which numbers amount ammo will be given to weapon if you loot it
-	GiveWeaponToPed(GetPlayerPed(-1), randomWeapon, randomAmmo, true, false)
-	exports['mythic_notify']:DoHudText('inform','You have found a weapon.')
-elseif randomChance >= Config.ProbabilityWeaponLoot and randomChance < Config.ProbabilityMoneyLoot then
-	TriggerServerEvent('cynio:money')
-elseif randomChance >= Config.ProbabilityMoneyLoot and randomChance < Config.ProbabilityItemLoot then
-	TriggerServerEvent('cynio:item', randomItem)
-elseif randomChance >= Config.ProbabilityItemLoot and randomChance < 100 then
-	exports['mythic_notify']:DoHudText('inform','You did not find anything...') -- here you can edit message for your language
-	end
+ 
+function loot(xPlayer)
+    local randomChance = math.random(1, 100)
+    local randomWeapon = Config.WeaponLoot[math.random(1, #Config.WeaponLoot)]
+    local randomItem = Config.ItemLoot[math.random(1, #Config.ItemLoot)]
+ 
+    if randomChance > 0 and randomChance < Config.ProbabilityWeaponLoot then
+        local randomAmmo = math.random(12, 48)
+        GiveWeaponToPed(GetPlayerPed(-1), randomWeapon, randomAmmo, true, false)
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You have found a weapon.' })
+    elseif randomChance >= Config.ProbabilityWeaponLoot and randomChance < Config.ProbabilityMoneyLoot then
+        TriggerServerEvent('cynio:money')
+    elseif randomChance >= Config.ProbabilityMoneyLoot and randomChance < Config.ProbabilityItemLoot then
+        TriggerServerEvent('cynio:item', randomItem)
+    else
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You did not find anything...' })
+    end
 end
-
-
+ 
 if Config.ObjectEnabled then
 	Citizen.CreateThread(function()
 	    while true do
-	        Wait(0)
+	        Wait(1)
 	        for k,v in pairs(Config.Objects) do
 		        	local player = GetPlayerPed(-1)
 		        	local distanceobject = 2.2
@@ -46,13 +46,9 @@ if Config.ObjectEnabled then
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
 						if not objects[obj] then
-			
-
 		                    SetCurrentPedWeapon(GetPlayerPed(-1), 0xA2719263, true)
 		                    RequestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@")
-							while not HasAnimDictLoaded("anim@amb@clubhouse@tutorial@bkr_tut_ig3@") do
-								Citizen.Wait(1000)
-							end
+							Citizen.Wait(1000)
 							TaskPlayAnim(PlayerPedId(), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 2.0, 2.0, 5000, 30, 0, 0, 0, 0)
 							Citizen.Wait(5000)
 							loot()
