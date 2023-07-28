@@ -13,7 +13,7 @@ function loot(xPlayer)
  
     if randomChance > 0 and randomChance < Config.ProbabilityWeaponLoot then
         local randomAmmo = math.random(12, 48)
-        GiveWeaponToPed(GetPlayerPed(-1), randomWeapon, randomAmmo, true, false)
+        GiveWeaponToPed(PlayerPedId(), randomWeapon, randomAmmo, true, false)
         TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You have found a weapon.' })
     elseif randomChance >= Config.ProbabilityWeaponLoot and randomChance < Config.ProbabilityMoneyLoot then
         TriggerServerEvent('cynio:money')
