@@ -35,7 +35,7 @@ Open for pull requests.
 ## Working on
 Adding progressbar while looting
 
-optimalization (a lot of props = a lot of cpu usage, would like some help)
+optimalization (a lot of props = a lot of cpu usage, would love some help)
 
 ## Legal
 
