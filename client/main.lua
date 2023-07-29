@@ -23,17 +23,11 @@ local function loot(xPlayer)
         TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You found nothing...' })
     end
 end
- 
- local function napis(ObjectCoords)
-	if not objects[obj] then
-		ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Search', 1, 4) -- here you can customise what appears on a prop that is searchable
-	end
-end
 
 if Config.ObjectEnabled then
 	Citizen.CreateThread(function()
 	    while true do
-	        Citizen.Wait(5)
+	        Citizen.Wait(1)
 	        for k,v in pairs(Config.Objects) do
 		            local player = PlayerPedId()
 		            local distanceobject = 2.2
@@ -41,7 +35,9 @@ if Config.ObjectEnabled then
 		            local distance = #(GetEntityCoords(player) - GetEntityCoords(obj))
 			 if distance <= distanceobject then
 					local ObjectCoords = GetEntityCoords(obj)
-		            napis(ObjectCoords)
+		            if not objects[obj] then
+						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Przeszukaj', 1, 4) -- here you can customise what appears on a prop that is searchable
+					end
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
 						if not objects[obj] then
