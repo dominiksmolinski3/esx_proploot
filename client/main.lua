@@ -36,18 +36,36 @@ if Config.ObjectEnabled then
 			 if distance <= distanceobject then
 					local ObjectCoords = GetEntityCoords(obj)
 		            if not objects[obj] then
-						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Przeszukaj', 1, 4) -- here you can customise what appears on a prop that is searchable
+						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Search', 1, 4) -- here you can customise what appears on a prop that is searchable
 					end
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
 						if not objects[obj] then
-							SetCurrentPedWeapon(PlayerPedId(), 0xA2719263, true)
-							RequestAnimDict("anim@amb@clubhouse@tutorial@bkr_tut_ig3@")
-							Citizen.Wait(1000)
-							TaskPlayAnim(PlayerPedId(), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 2.0, 2.0, 5000, 30, 0, 0, 0, 0)
-							Citizen.Wait(5000)
-							loot()
-							objects[obj] = true
+						  TriggerEvent("mythic_progbar:client:progress", {
+								name = "searching",
+								duration = 5000,
+								label = "You are looting...", -- what appears on progress bar
+								useWhileDead = false,
+								canCancel = true,
+								controlDisables = {
+									disableMovement = true,
+									disableCarMovement = true,
+									disableMouse = false,
+									disableCombat = true,
+								},
+								animation = {
+								animDict = "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
+								anim = "machinic_loop_mechandplayer",
+								},
+								prop = {
+								model = nil,
+								}
+							}, function(status)
+								if not status then
+								loot()
+								objects[obj] = true
+						    end
+					     end)
 		               	end
 		            end
 		        end
