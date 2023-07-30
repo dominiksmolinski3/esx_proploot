@@ -14,7 +14,7 @@ oxmysql - should be in default esx server, needed for connecting database with s
 
 mythic_notify  https://github.com/JayMontana36/mythic_notify
 
-mythic_progbar - optional, will be needed in the future, cool stuff tho https://github.com/OGarridoR10/mythic_progbar
+mythic_progbar  https://github.com/OGarridoR10/mythic_progbar
 
 ## Installation
 Download from 'Releases' or manually.
@@ -33,8 +33,6 @@ I'm open to all suggestions and if you need help don't be afraid to open tickets
 Open for pull requests.
 
 ## Working on
-Adding progressbar while looting
-
 optimalization (a lot of props = a lot of cpu usage, would love some help)
 
 ## Legal
