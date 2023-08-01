@@ -13,14 +13,13 @@ local function loot(xPlayer)
  
     if randomChance > 0 and randomChance < Config.ProbabilityWeaponLoot then
         local randomAmmo = math.random(12, 48)
-        GiveWeaponToPed(PlayerPedId(), randomWeapon, randomAmmo, true, false)
-        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', 'You have found' .. randomWeapon })
+		TriggerServerEvent('cynio:weapon', randomWeapon, randomAmmo)
     elseif randomChance >= Config.ProbabilityWeaponLoot and randomChance < Config.ProbabilityMoneyLoot then
         TriggerServerEvent('cynio:money')
     elseif randomChance >= Config.ProbabilityMoneyLoot and randomChance < Config.ProbabilityItemLoot then
         TriggerServerEvent('cynio:item', randomItem)
     else
-        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You found nothing...' })
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'Nic nie znalazles...' })
     end
 end
 
@@ -36,15 +35,15 @@ if Config.ObjectEnabled then
 			 if distance <= distanceobject then
 					local ObjectCoords = GetEntityCoords(obj)
 		            if not objects[obj] then
-						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Search', 1, 4) -- here you can customise what appears on a prop that is searchable
+						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Przeszukaj', 1, 4) -- here you can customise what appears on a prop that is searchable
 					end
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
 						if not objects[obj] then
 						  TriggerEvent("mythic_progbar:client:progress", {
-								name = "searching",
+								name = "przeszukiwanie",
 								duration = 5000,
-								label = "You are looting...", -- what appears on progress bar
+								label = "Przeszukujesz...",
 								useWhileDead = false,
 								canCancel = true,
 								controlDisables = {
