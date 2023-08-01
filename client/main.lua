@@ -19,7 +19,7 @@ local function loot(xPlayer)
     elseif randomChance >= Config.ProbabilityMoneyLoot and randomChance < Config.ProbabilityItemLoot then
         TriggerServerEvent('cynio:item', randomItem)
     else
-        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'Nic nie znalazles...' })
+        TriggerEvent('mythic_notify:client:SendAlert', { type = 'inform', text = 'You found nothing...' })
     end
 end
 
@@ -35,7 +35,7 @@ if Config.ObjectEnabled then
 			 if distance <= distanceobject then
 					local ObjectCoords = GetEntityCoords(obj)
 		            if not objects[obj] then
-						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Przeszukaj', 1, 4) -- here you can customise what appears on a prop that is searchable
+						ESX.Game.Utils.DrawText3D(ObjectCoords + vector3(0.0, 0.0, 0.5), 'Search', 1, 4) -- here you can customise what appears on a prop that is searchable
 					end
 
 		            if IsControlJustReleased(0, 38) then -- here you can change hotkey that is used to loot, default 'E' (38)
@@ -43,7 +43,7 @@ if Config.ObjectEnabled then
 						  TriggerEvent("mythic_progbar:client:progress", {
 								name = "przeszukiwanie",
 								duration = 5000,
-								label = "Przeszukujesz...",
+								label = "Searching...",
 								useWhileDead = false,
 								canCancel = true,
 								controlDisables = {
